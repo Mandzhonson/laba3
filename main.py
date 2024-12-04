@@ -13,7 +13,7 @@ def match_snils(snils: str):
     return re.match(REGULAR, snils) is not None
 
 
-def find_snils_in_file():
+def find_snils_in_file(filename="test_snils.txt"):
     with open(filename, "r") as file:
         snils_arr = []
         for line in file:
@@ -39,9 +39,11 @@ def interface():
     print("2. Найти снилсы в тестовом файле")
     print("3. Ввести вручную снилс и проверить на правильность")
 
+
 def print_arr(arr):
     for el in arr:
         print(el)
+
 
 def main():
     interface()
@@ -49,7 +51,8 @@ def main():
     match choise:
         case "1":
             print("Считываем информацию с сайта и сразу ищем снилс")
-            arr = find_snils_on_site()[:50] # возьмем первые 50 снилсов, так как их на сайте около тысячи
+            # возьмем первые 50 снилсов, так как их на сайте около тысячи
+            arr = find_snils_on_site()[:50]
             print_arr(arr)
         case "2":
             print("Считываем информацию с файла и сразу ищем снилс")
@@ -61,6 +64,7 @@ def main():
                 print(f"Такой СНИЛС корректен: {snils}")
             else:
                 print("Это не СНИЛС, либо вы указали в неправильном формате.")
+
 
 if __name__ == "__main__":
     main()
